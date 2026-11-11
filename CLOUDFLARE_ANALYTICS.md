@@ -1,15 +1,14 @@
-# Cloudflare Web Analytics setup
+# Cloudflare Web Analytics
 
-The site is hosted on GitHub Pages. Cloudflare Web Analytics can track a site that is not proxied through Cloudflare by using its JavaScript beacon.
+MadeBySavyo Labs reuses the existing Cloudflare Web Analytics site token configured for the GitHub Pages hostname savieo.github.io in the Savieo portfolio repository. The two project sites share the same hostname and are distinguished by their URL paths.
 
-1. Sign in to Cloudflare.
-2. Open Web Analytics and choose Add a site.
-3. Add the hostname savieo.github.io. This covers the /madebysavyo-labs/ project path. Add a custom hostname too if a custom domain is connected later.
-4. Open Manage site and copy the exact JavaScript beacon snippet generated for this site.
-5. Edit index.html and paste the snippet in the marked Cloudflare placeholder near the end of the head section.
-6. Commit the change; GitHub Actions will publish it.
-7. Visit the website, then check Web Analytics. Initial metrics may take a few minutes to appear.
+The analytics loader reads the token from a meta tag on index.html and thank-you.html, then loads Cloudflare's official beacon from static.cloudflareinsights.com.
 
-Cloudflare's official steps for sites not proxied through Cloudflare require adding the site hostname, copying the site-specific snippet and inserting it into the website HTML. Do not reuse another site's beacon token.
+- Main website path: /madebysavyo-labs/
+- Existing portfolio path: /savieo/
+- Analytics hostname: savieo.github.io
+- No separate token is required while both sites remain on the same hostname.
 
-Official guide: https://developers.cloudflare.com/web-analytics/get-started/
+If a custom domain is connected later, add/configure that hostname with Cloudflare Web Analytics and update the token in the meta tags.
+
+Official documentation: https://developers.cloudflare.com/pages/how-to/web-analytics/
