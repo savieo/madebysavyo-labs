@@ -1,45 +1,48 @@
 # MadeBySavyo Labs — public website
 
-Live target: https://savieo.github.io/madebysavyo-labs/
+Repository: https://github.com/savieo/madebysavyo-labs
+Target website: https://savieo.github.io/madebysavyo-labs/
 
 ## Publish with GitHub Pages
+The repository includes a GitHub Actions Pages deployment workflow at .github/workflows/pages.yml.
 1. Open https://github.com/savieo/madebysavyo-labs/settings/pages
-2. Under **Build and deployment**, select **Deploy from a branch**.
-3. Choose branch **main** and folder **/(root)**, then Save.
-4. Wait for the Pages deployment to finish. The public URL is the target above.
+2. Under **Build and deployment**, set **Source** to **GitHub Actions**.
+3. Confirm and save if prompted. The workflow runs on pushes to main and can also be started manually.
+4. Open the repository's **Actions** tab and confirm the latest “Deploy MadeBySavyo Labs to GitHub Pages” run succeeds.
+5. Once deployment completes, open https://savieo.github.io/madebysavyo-labs/
 
 ## Quote requests and direct file uploads
-The quote form currently uses FormSubmit to deliver customer details and attachments to **savieoseb@gmail.com**.
-- First, submit a test request after Pages is live.
-- FormSubmit will send a one-time activation/confirmation email to the receiving inbox. Open it and activate the form.
-- The documented combined upload limit is **10 MB per submission**.
-- Accepted file types in the form: STL, 3MF, OBJ, STEP/STP, ZIP, plus reference images/PDF.
+The quote and review forms use FormSubmit to deliver customer details and attachments to **savieoseb@gmail.com**.
+- The customer can attach the supported model files directly on the website; no account is required.
+- First submission triggers a one-time activation/confirmation email to the recipient. Confirm it before advertising the form as live. FormSubmit says pending submissions are held until confirmation.
+- The documented combined file upload ceiling is **10 MB per submission**.
+- Accepted quote file types: STL, 3MF, OBJ, STEP/STP, ZIP, plus reference images/PDF.
 - Larger files: ask the customer to submit the enquiry without an attachment and then provide a private transfer route.
-- FormSubmit is a third-party service. Do not invite customers to upload confidential, regulated or sensitive design files. Review its data handling terms before taking commercially sensitive customer work.
-- Review submissions are sent for manual moderation; they are not published automatically.
+- FormSubmit is a third-party service. Do not invite confidential, regulated or commercially sensitive designs through this starter form. Review the provider's terms and privacy policy.
+- Review submissions go to the business inbox for manual moderation; they are not published automatically.
 
-Form service documentation: https://formsubmit.co/documentation
+FormSubmit docs: https://formsubmit.co/documentation
+FormSubmit help: https://formsubmit.co/help
 
 ## Cloudflare Web Analytics
-The site includes a clearly marked placeholder in index.html; tracking is not active until a site-specific token is added.
-1. In Cloudflare Dashboard, open **Analytics & Logs → Web Analytics → Add a site**.
-2. Add the published hostname **savieo.github.io** (or your custom hostname later).
-3. Copy the generated JavaScript beacon snippet.
-4. Replace the Cloudflare placeholder comment near the top of index.html with the exact snippet, commit the change, and wait for Pages to redeploy.
-5. View metrics in Cloudflare Web Analytics.
+Cloudflare Web Analytics is configured in the site using the existing site-specific token from the Savieo portfolio for the same hostname, **savieo.github.io**. Both GitHub Pages project sites share the same host and the analytics beacon is loaded on the MadeBySavyo homepage and confirmation page. No second property is required while the same hostname is used.
+- Loader: assets/js/analytics.js
+- Token is read from a meta tag in index.html and thank-you.html.
+- If a custom domain is added later, add/configure that hostname with Cloudflare and update its site token.
 
-Cloudflare setup: https://developers.cloudflare.com/pages/how-to/web-analytics/
+Cloudflare guide: https://developers.cloudflare.com/pages/how-to/web-analytics/
 
 ## Current modules
 - Homepage and services
 - Portfolio with one named early project and clearly identified placeholder cards
 - How-it-works learning flow
 - Video placeholders for real print timelapses
-- On-demand quote form with file attachments
+- On-demand quote form with email attachments
 - Monthly plan concepts marked **Coming soon** (not active subscriptions)
 - Interactive material guide
 - Free model platform directory with licensing reminder
 - Review submissions sent for manual approval
+- Privacy and file-handling page
 
 ## Not connected yet
 - Stripe payments or recurring subscriptions
@@ -50,11 +53,11 @@ Cloudflare setup: https://developers.cloudflare.com/pages/how-to/web-analytics/
 - Real customer video embeds and additional portfolio photographs
 
 ## Material and capability accuracy
-Material descriptions are educational guidance only. Availability, printer suitability and colour stock must be confirmed for each quote. The menu does not promise that every filament is currently in stock or accepted for every job.
+Material descriptions are educational guidance only. Availability, printer suitability and colour stock must be confirmed for each quote. The material selector does not promise every filament is currently in stock or accepted for every job.
 
 ## Before promoting widely
-- Activate the FormSubmit recipient using the email confirmation.
-- Test a small STL upload and verify it arrives at the intended inbox.
+- Enable GitHub Pages from Settings → Pages → Source: GitHub Actions.
+- Confirm the Pages workflow succeeds and test the live site.
+- Activate FormSubmit using its email confirmation, then test a small file upload and verify the email arrives.
 - Replace portfolio/video placeholders with real content. Obtain permission before displaying customer projects or reviews.
-- Publish a privacy notice and service terms explaining file handling, quote acceptance, cancellations/refunds, pickup/delivery, model licensing and customer content permissions.
-- Add the Cloudflare Web Analytics token.
+- Review the privacy notice and service terms for the actual way you handle customer files, quote acceptance, cancellations/refunds, pickup/delivery, model licences and customer content.
