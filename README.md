@@ -1,63 +1,31 @@
-# MadeBySavyo Labs — public website
+# MadeBySavyo Labs
 
+Public website: https://savieo.github.io/madebysavyo-labs/
 Repository: https://github.com/savieo/madebysavyo-labs
-Target website: https://savieo.github.io/madebysavyo-labs/
 
-## Publish with GitHub Pages
-The repository includes a GitHub Actions Pages deployment workflow at .github/workflows/pages.yml.
-1. Open https://github.com/savieo/madebysavyo-labs/settings/pages
-2. Under **Build and deployment**, set **Source** to **GitHub Actions**.
-3. Confirm and save if prompted. The workflow runs on pushes to main and can also be started manually.
-4. Open the repository's **Actions** tab and confirm the latest “Deploy MadeBySavyo Labs to GitHub Pages” run succeeds.
-5. Once deployment completes, open https://savieo.github.io/madebysavyo-labs/
+## Public website
+- Customer-facing 3D-printing services, how-it-works, learning videos and STL discovery shelf.
+- Quote request form with file attachment delivery to savieoseb@gmail.com using FormSubmit.
+- Customer reviews and privacy/file-handling page.
+- Cloudflare Web Analytics loader for the existing savieo.github.io hostname.
 
-## Quote requests and direct file uploads
-The quote and review forms use FormSubmit to deliver customer details and attachments to **savieoseb@gmail.com**.
-- The customer can attach the supported model files directly on the website; no account is required.
-- First submission triggers a one-time activation/confirmation email to the recipient. Confirm it before advertising the form as live. FormSubmit says pending submissions are held until confirmation.
-- The documented combined file upload ceiling is **10 MB per submission**.
-- Accepted quote file types: STL, 3MF, OBJ, STEP/STP, ZIP, plus reference images/PDF.
-- Larger files: ask the customer to submit the enquiry without an attachment and then provide a private transfer route.
-- FormSubmit is a third-party service. Do not invite confidential, regulated or commercially sensitive designs through this starter form. Review the provider's terms and privacy policy.
-- Review submissions go to the business inbox for manual moderation; they are not published automatically.
+## Private operations dashboard
+- URL: https://savieo.github.io/madebysavyo-labs/admin/
+- Source: admin/index.html, admin/admin.js and admin/config.js.
+- Backend: Supabase Auth, Postgres, Row Level Security and private Storage bucket.
+- Schema: supabase/schema.sql.
+- FormSubmit webhook: supabase/functions/formsubmit-webhook/index.ts.
+- Existing 12 curated model links can be seeded with supabase/seed-model-catalog.sql.
+- Setup instructions: ADMIN_SETUP.md.
 
-FormSubmit docs: https://formsubmit.co/documentation
-FormSubmit help: https://formsubmit.co/help
+The admin dashboard is not database-connected until a Supabase project is created, admin/config.js is configured, the schema is run and the admin email is allow-listed. No secrets belong in the public repository. Never commit the Supabase service_role key.
 
-## Cloudflare Web Analytics
-Cloudflare Web Analytics is configured in the site using the existing site-specific token from the Savieo portfolio for the same hostname, **savieo.github.io**. Both GitHub Pages project sites share the same host and the analytics beacon is loaded on the MadeBySavyo homepage and confirmation page. No second property is required while the same hostname is used.
-- Loader: assets/js/analytics.js
-- Token is read from a meta tag in index.html and thank-you.html.
-- If a custom domain is added later, add/configure that hostname with Cloudflare and update its site token.
+## Gmail remains active
+FormSubmit continues emailing quote requests and attachments to savieoseb@gmail.com. Once the Supabase Edge Function is deployed and the hidden _webhook field is added to both forms, the same submissions will also be mirrored into the private dashboard. The first implementation stores attachment filenames; Gmail remains the file source until private Storage uploads are implemented.
 
-Cloudflare guide: https://developers.cloudflare.com/pages/how-to/web-analytics/
-
-## Current modules
-- Homepage and services
-- Portfolio with one named early project and clearly identified placeholder cards
-- How-it-works learning flow
-- Video placeholders for real print timelapses
-- On-demand quote form with email attachments
-- Monthly plan concepts marked **Coming soon** (not active subscriptions)
-- Interactive material guide
-- Free model platform directory with licensing reminder
-- Review submissions sent for manual approval
-- Privacy and file-handling page
-
-## Not connected yet
-- Stripe payments or recurring subscriptions
-- Customer sign-in, order tracking or member portal
-- Admin dashboard and permanent order database
-- Private file storage and larger secure CAD uploads
-- Automatic quote calculation and print-queue management
-- Real customer video embeds and additional portfolio photographs
-
-## Material and capability accuracy
-Material descriptions are educational guidance only. Availability, printer suitability and colour stock must be confirmed for each quote. The material selector does not promise every filament is currently in stock or accepted for every job.
-
-## Before promoting widely
-- Enable GitHub Pages from Settings → Pages → Source: GitHub Actions.
-- Confirm the Pages workflow succeeds and test the live site.
-- Activate FormSubmit using its email confirmation, then test a small file upload and verify the email arrives.
-- Replace portfolio/video placeholders with real content. Obtain permission before displaying customer projects or reviews.
-- Review the privacy notice and service terms for the actual way you handle customer files, quote acceptance, cancellations/refunds, pickup/delivery, model licences and customer content.
+## Current limitations
+- Quotes are saved as drafts; send quote details manually through Gmail.
+- Payments are manually recorded; no Stripe checkout is active.
+- Monthly plans remain proposed/coming soon.
+- Catalogue administration is ready, but the public 12-model shelf is still a curated static section.
+- Replace portfolio placeholders only with real customer projects and images approved for public use.
