@@ -201,4 +201,5 @@ create index if not exists orders_status_created_idx on public.orders(status, cr
 create index if not exists quotes_enquiry_idx on public.quotes(enquiry_id, created_at desc);
 create index if not exists reviews_moderation_idx on public.reviews(moderation_status, created_at desc);
 create index if not exists model_catalog_public_idx on public.model_catalog(is_published, review_status, category);
+create unique index if not exists model_catalog_source_url_uidx on public.model_catalog(source_url);
 create index if not exists payments_order_idx on public.payments(order_id, created_at desc);
